@@ -1,0 +1,20 @@
+# GitHub Actions 部署配置
+# 使用方法：
+# 1. 在仓库创建 .github/workflows/ 文件夹
+# 2. 把此文件改名为 deploy.yml 放入该文件夹
+# 3. 或者直接在 Settings → Pages 中开启自动部署
+
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
